@@ -2,9 +2,9 @@ name: Build Staging (Stable) Build
 
 on:
   push:
-    branches: [ ack ]
+    branches: [ staging ]
   pull_request:
-    branches: [ ack   ]
+    branches: [ staging ]
 
 jobs:
   m30s:
@@ -35,12 +35,7 @@ jobs:
           mkdir -p ${HOME}/toolchain_arm32
           wget https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-arm-none-eabi.tar.xz --output-document=${HOME}/toolchain_arm32/gcc-arm-10.2-2020.11-x86_64-arm-none-eabi.tar.xz
           tar -xvf ${HOME}/toolchain_arm32/gcc-arm-10.2-2020.11-x86_64-arm-none-eabi.tar.xz -C ${HOME}/toolchain_arm32
-          
-    - name: Set Swap Space
-      uses: pierotofy/set-swap-space@master
-      with:
-          swap-size-gb: 12
-          
+        
     - name: Build Kernel
       run: |
           set -eo pipefail
@@ -51,8 +46,7 @@ jobs:
     - name: Prepare Release
       run: |
           mkdir -p ./release
-          mv -f `find ./ -iname Twilight_*.zip` ./release/
-          cp -f `find ./ -iname Twilight_*.zip` ./
+          mv -f `find ./ -iname FRSH_CORE_*.zip` ./release/
           cp .config ./release/kernel_config_m30s.txt
 
     - name: Upload image artifact
