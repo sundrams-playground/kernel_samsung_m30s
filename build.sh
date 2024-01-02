@@ -311,4 +311,3 @@ if [[ ! -z ${1} ]]; then
 else
 	show_usage
 fi
-
