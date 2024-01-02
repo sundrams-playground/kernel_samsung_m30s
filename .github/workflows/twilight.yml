@@ -83,3 +83,10 @@ jobs:
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         document: Twilight_*.zip
         message: "Twilight Kernel for M30s!"
+    - name: Upload wlan module
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        document: net/wireless/cfg80211.ko
+        message: "wlan module"
